@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-var brokerURL = window.location.origin + window.location.pathname + "broker/";
-var reservationBrokerURL = window.location.origin + window.location.pathname + "reservation-broker/";
+var brokerURL = window.location.origin + window.location.pathname.match(/.*\//)[0] + "broker/";
+var reservationBrokerURL = window.location.origin + window.location.pathname.match(/.*\//)[0] + "reservation-broker/";
 
 var podBroker = new PodBroker(brokerURL);
 var reservationPodBroker = new PodBroker(reservationBrokerURL);

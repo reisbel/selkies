@@ -393,7 +393,6 @@ spec:
         ###
         - name: web
           image: gcr.io/cloud-solutions-images/kube-pod-broker-web:latest
-          command: ["nginx", "-g", "daemon off;"]
           workingDir: "/usr/share/nginx/html"
           readinessProbe:
             httpGet:

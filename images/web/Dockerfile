@@ -14,10 +14,15 @@
 
 FROM nginx:alpine
 
+# Install dependencies
+RUN \
+    apk add -u --no-cache imagemagick
+
 # Copy web assets
 WORKDIR /usr/share/nginx/html/
-COPY src/app.js src/index.html ./
+COPY src/app.js src/sw.js src/index.html src/manifest.json ./
 COPY src/pod_broker.js .
+COPY icon.png ./
 COPY config/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy CDN resources
@@ -33,3 +38,5 @@ WORKDIR /usr/share/nginx/html/
 
 # Patch index.html to fetch latest version of javascript source
 RUN sed -i 's|script src="\(.*\)?ts=.*"|script src="\1?ts='$(date +%s)'"|g' index.html
+
+CMD nginx -g 'daemon off;'
