@@ -212,7 +212,7 @@ class BrokerApp {
         if (this.type !== "statefulset") return;
         this.saveStatus = "idle";
         this.broker.get_config(this.name, (data) => {
-            if (data.status !== undefined && data.status !== 200) {
+            if (data.status !== undefined && data.status !== 200 && data.status !== 503) {
                 vue_app.reload_dialog = true;
                 return;
             }
